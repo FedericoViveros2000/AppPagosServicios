@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estamos ocupando una fuente personalizada "Rale" */
+.btn {
+    @apply w-full py-3 rounded-md;
+}
+
+.btn-primary{
+    @apply text-white bg-primary;
+}
+
+.input {
+    @apply outline-0 w-full border border-slate-400 rounded-md;
+}
+
+.input-flex{
+    @apply flex items-center p-3
+}
+
+
+.input-error {
+    @apply border border-red-600 rounded-md;
+}
