@@ -5,7 +5,9 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      'primary': '#1d428a'
+      'primary': '#1d428a',
+      'disabled': 'rgba(29,66,138,0.70)',
+      'grey': '#f2f2f2'
     },
   },
   //plugins: [require("daisyui")],

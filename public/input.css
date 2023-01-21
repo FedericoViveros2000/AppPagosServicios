@@ -11,6 +11,10 @@
     @apply text-white bg-primary;
 }
 
+.btn-disabled {
+    @apply text-white bg-disabled;
+}
+
 .input {
     @apply outline-0 w-full border border-slate-400 rounded-md;
 }
