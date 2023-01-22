@@ -14,7 +14,9 @@ const getAllData = async (table) => {
 
 const getSelectedData = async (table, row, id) => {
     try{
-        let {data, error, status, statusText} = await supabase.from(table).select('campos').eq(row, id);
+        console.log(table, row, id);
+        let {data, error, status, statusText} = await supabase.from(table).select().eq(row, id);
+        console.log(data);
         if (error) throw new Error(`Ha ocurrido un error ${error}, status ${status} - ${statusText}`)
         return data;
     }catch(err) {

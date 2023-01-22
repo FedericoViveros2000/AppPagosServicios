@@ -5,6 +5,7 @@ import ErrorPage from './components/ErrorPage.jsx';
 import Home from './components/Home.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import FormQueryDebt from './components/FormQueryDebt.jsx';
+import PayDebt from './components/PayDebt.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,12 @@ const router = createBrowserRouter([
     element: <Home/>,
   },
   {
-    path: '/query',
+    path: '/pay/:service',
     element: <FormQueryDebt/>
+  },
+  {
+    path: '/pay/:service/:id',
+    element: <PayDebt/>
   }
 ])
 

@@ -5,6 +5,7 @@ import ModalPay from "./ModalPay.jsx";
 import { useState } from "react";
 import NavBar from "./NavBar.jsx";
 import { useOptions } from "../hooks/useOptions.jsx";
+import Loader from "./Loader.jsx";
 
 const Home = () => {
     const [servicio, setServicio] = useState({
@@ -15,7 +16,7 @@ const Home = () => {
     let {isFetching, form, handleInput, options, error} = useOptions();
     let [showModal, setShowModal] = useState(false);
 
-    if (isFetching) return <p>Cargando</p>
+    if (isFetching) return <Loader/>
 
     const handleDetail = (idServicio, servicio) => {
         setServicio({
@@ -57,10 +58,9 @@ const Home = () => {
                 <ModalPay 
                     servicio={servicio}
                     showModal={setShowModal}
-                    //idServicio={idServicio}
                 />
             }
-            <NavBar/>
+            {/* <NavBar/> */}
         </div>
     )
 }

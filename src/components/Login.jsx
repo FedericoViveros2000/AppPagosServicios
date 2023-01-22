@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import eyeHide from '../assets/icons/eyeHide.svg';
 import eyeShow from '../assets/icons/eyeShow.svg';
+import logo from "../assets/icons/logo.svg";
+import "./Loader.jsx";
 
 const Login = () => {
 
@@ -50,18 +52,23 @@ const Login = () => {
     }
 
     return (
-        <div className='absolute bottom-0 py-5 px-3 w-full'>
-            <form onSubmit={handleSubmit}>
-                <label className='block mb-3'>Hola, {customerName}</label>
-                <div className={empty ? 'input-flex input-error' : 'input-flex input'}>
-                    <input type={inputType} placeholder="Introduzca su contraseña" onBlur={handleFocus} className={empty ? 'w-full placeholder-red-600 outline-none border-0' : 'outline-none border-0 w-full'} value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <figure className='ml-3' onClick={changeInputType}>
-                        <img src={inputType === 'password' ? eyeShow : eyeHide} alt="Icono de password" />
-                    </figure>
-                </div>
-                <p className='text-right text-sm my-3'>Olvide mi contraseña</p>
-                <button className={disabledButton ? 'btn btn-disabled' : 'btn btn-primary'} disabled={disabledButton}>{sessionText}</button>
-            </form>
+        <div>
+            <figure className='py-5 mt-10 px-3'>
+                <img src={logo} alt="" className='object-cover'/>
+            </figure>
+            <section className='absolute bottom-0 py-5 px-3 w-full'>
+                <form onSubmit={handleSubmit}>
+                    <label className='block mb-3'>Hola, {customerName}</label>
+                    <div className={empty ? 'input-flex input-error' : 'input-flex input'}>
+                        <input type={inputType} placeholder="Introduzca su contraseña" onBlur={handleFocus} className={empty ? 'w-full placeholder-red-600 outline-none border-0 bg-transparent' : 'outline-none border-0 w-full bg-transparent'} value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <figure className='ml-3' onClick={changeInputType}>
+                            <img src={inputType === 'password' ? eyeShow : eyeHide} alt="Icono de password" />
+                        </figure>
+                    </div>
+                    <p className='text-right text-sm my-3'>Olvide mi contraseña</p>
+                    <button className={disabledButton ? 'btn btn-disabled' : 'btn btn-primary'} disabled={disabledButton}>{sessionText}</button>
+                </form>
+            </section>
         </div>
     )
 }
