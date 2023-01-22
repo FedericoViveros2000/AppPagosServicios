@@ -1,52 +1,29 @@
-import { useEffect, useState } from "react";
 import btnBack from "../assets/icons/btnBack.svg";
 import iconSearch from "../assets/icons/iconSearch.svg";
 import {Link} from "react-router-dom";
 import ModalPay from "./ModalPay.jsx";
+import { useState } from "react";
+import NavBar from "./NavBar.jsx";
+import { useOptions } from "../hooks/useOptions.jsx";
 
 const Home = () => {
+    const [servicio, setServicio] = useState({
+        idServicio: 0,
+        servicio: []
+    });
 
-   const [options, setOptions] = useState([
-    "A MAS B",
-    "ATALAYA INMOBILIARIA",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ande",
-    "ESSAP",
-    "IMPUESTO INMOBILIARIO"
-   ])
+    let {isFetching, form, handleInput, options, error} = useOptions();
+    let [showModal, setShowModal] = useState(false);
 
-   const [copyOptions, setCopyOptions] = useState([]);
-   const [showModal, setShowModal] = useState(false);
-   const [search, setSearch] = useState('');
+    if (isFetching) return <p>Cargando</p>
 
-   const handleShowModal = () => {
-    setShowModal(true);
-   }
-   const filterSearch = (options, word) => options.filter(option => option.toLowerCase().split(' ').join('').includes(word.toLowerCase().split(' ').join('')));
-
-   const handleInput = (e) => {
-    setSearch(e.target.value);
-    const data = filterSearch(options, e.target.value);
-    setCopyOptions(data);
-   }
-
-   useEffect(() => {
-    setCopyOptions(options);
-   }, [])
+    const handleDetail = (idServicio, servicio) => {
+        setServicio({
+            idServicio,
+            servicio
+        })
+        setShowModal(true)
+    }
 
     return(
         <div className="h-screen bg-primary ">
@@ -66,15 +43,24 @@ const Home = () => {
                     <figure className="mr-2">
                         <img src={iconSearch} alt="" />
                     </figure>
-                    <input type="text" value={search} onChange={handleInput} className="w-full bg-transparent border-0 outline-none" placeholder="Buscar"/>
+                    <input type="text" value={form.search} onChange={(e) => handleInput(e.target.value)} className="w-full bg-transparent border-0 outline-none" placeholder="Buscar"/>
                 </div>
-                <div className="mt-3 max-h-[90%] overflow-y-auto leading-10">
+                <div className="mt-3 max-h-[87%] md:max-h-[80%] overflow-y-auto leading-10">
                     {
-                        copyOptions.map((option, index) => <p className="cursor-pointer uppercase" key={index} onClick={handleShowModal}>{option}</p>)
+                        options.map(({servicio, id}) => <p className="cursor-pointer uppercase" key={id} onClick={() => handleDetail(id, servicio)}>{servicio}</p>)
                     }
                 </div>
             </form>
-            {showModal && <ModalPay showModal={setShowModal}/>}
+            {
+                showModal 
+                && 
+                <ModalPay 
+                    servicio={servicio}
+                    showModal={setShowModal}
+                    //idServicio={idServicio}
+                />
+            }
+            <NavBar/>
         </div>
     )
 }

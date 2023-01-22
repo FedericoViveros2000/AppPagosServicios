@@ -4,6 +4,7 @@ import App from './App.jsx'
 import ErrorPage from './components/ErrorPage.jsx';
 import Home from './components/Home.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import FormQueryDebt from './components/FormQueryDebt.jsx';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: '/home',
     element: <Home/>,
+  },
+  {
+    path: '/query',
+    element: <FormQueryDebt/>
   }
 ])
 
