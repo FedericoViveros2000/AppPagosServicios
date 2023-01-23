@@ -1,6 +1,9 @@
 import {useState, useEffect} from "react";
 import { updateData } from "../helpers/fetchData.js";
 
+/*
+    TODO Hook mediante el cual enviamos los datos actualizados a nuestro backend, para que lo actualize.
+*/
 const useUpdate = (table, objectUpdate, term, idFilter, initialValue = []) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);

@@ -1,5 +1,9 @@
 import { insertData } from "../helpers/fetchData.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+/* 
+    TODO Hook mediante el cual podemos insertar datos (usuarios, clientes) en nuestra base de datos alojada en supabase
+*/
 
 const useInsert = () => {
 
@@ -7,6 +11,9 @@ const useInsert = () => {
     const [isFetching, setIsfetching] = useState(false);
     const [error, setError] = useState(null)
 
+    /*
+        TODO Metodo mediante el cual insertamos al nuevo cliente (u otro), y devolvemos sus datos, para verificar si fue correctamente creado o no
+    */
     const insert = async (table = 'clientes', dataInsert) => {
         try {
             setIsfetching(true);
@@ -19,10 +26,6 @@ const useInsert = () => {
             setIsfetching(false);
         }
     }
-
-    /* useEffect(() => {
-        insert();
-    }, []) */
 
     return {
         user,

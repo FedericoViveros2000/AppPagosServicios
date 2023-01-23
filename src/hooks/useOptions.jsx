@@ -1,6 +1,10 @@
 import { useFetch } from "./useFetch.jsx";
 import { useEffect, useState } from "react";
 
+/*
+    TODO Hook mediante el cual filtramos los servicios que coincidan con el buscado por el usuario
+*/
+
 const useOptions = (table = 'servicios', initialValue = []) => {
 
     let {isFetching, data, error} = useFetch(table, initialValue);
@@ -10,8 +14,10 @@ const useOptions = (table = 'servicios', initialValue = []) => {
         search: ''
     });
 
+    //Funcion mediante el cual filtramos los servicios para pagar, ANDE, ESSAP, etc
     const filterSearch = (word, key) =>  data.filter(option => option[key].toLowerCase().split(' ').join('').includes(word.toLowerCase().split(' ').join('')))
     
+    //Funcion mediante la cual renderizamos los elementos que coincidan con la busqueda realizada por el usuario
     const handleInput = (word) => {
         setForm({
             search: word
@@ -20,27 +26,10 @@ const useOptions = (table = 'servicios', initialValue = []) => {
         setOptions(filtered);
     }
 
+    //Escuchando los cambios y actualizando el estado de los servicios para pagar
     useEffect(() => {
         setOptions(data);
     }, [data])
-
-    /* const [options, setOptions] = useState(initialValue);
-    const [copyOptions, setCopyOptions] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [search, setSearch] = useState('');
- 
-    const handleShowModal = () => {
-     setShowModal(true);
-    }
-
-    const filterSearch = (options, word) => options.filter(option => option.toLowerCase().split(' ').join('').includes(word.toLowerCase().split(' ').join('')));
- 
-    const handleInput = (e) => {
-     setSearch(e.target.value);
-     const data = filterSearch(options, e.target.value);
-     setCopyOptions(data);
-    }
-  */
 
     return {
         isFetching,
