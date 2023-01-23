@@ -14,9 +14,10 @@ const getAllData = async (table) => {
 
 const getSelectedData = async (table, row, id) => {
     try{
-        console.log(table, row, id);
-        let {data, error, status, statusText} = await supabase.from(table).select().eq(row, id);
-        console.log(data);
+        let {data, error, status, statusText} = await supabase
+        .from(table)
+        .select()
+        .eq(row, id);
         if (error) throw new Error(`Ha ocurrido un error ${error}, status ${status} - ${statusText}`)
         return data;
     }catch(err) {
@@ -24,7 +25,36 @@ const getSelectedData = async (table, row, id) => {
     }
 }
 
+const updateData = async (table, updateData, term, idFilter) => {
+    try{
+        const { data, error, status, statusText } = await supabase
+        .from(table)
+        .update(updateData)
+        .eq(term, idFilter)
+        .select();
+        if (error) throw new Error(`Ha ocurrido un error ${error}, status ${status} - ${statusText}`);
+        return data;
+    }catch(err) {
+        return err;
+    }
+}
+
+const insertData = async (table, dataInsert) => {
+    try{
+        const { data, error, status, statusText } = await supabase
+        .from(table)
+        .insert(dataInsert)
+        .select()
+        if (error) throw new Error(`Ha ocurrido un error ${error}, status ${status} - ${statusText}`);
+        return data;
+    }catch(err) {
+        return err;
+    }
+}
+
 export {
     getAllData,
-    getSelectedData
+    getSelectedData,
+    updateData,
+    insertData
 }

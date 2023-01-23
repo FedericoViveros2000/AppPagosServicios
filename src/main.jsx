@@ -6,12 +6,18 @@ import Home from './components/Home.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import FormQueryDebt from './components/FormQueryDebt.jsx';
 import PayDebt from './components/PayDebt.jsx';
+import FinishPay from './components/FinishPay.jsx';
+import FormRegister from './components/FormRegister.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
     errorElement: <ErrorPage/>
+  },
+  {
+    path: '/Register',
+    element: <FormRegister/>
   },
   {
     path: '/home',
@@ -24,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/pay/:service/:id',
     element: <PayDebt/>
+  }, 
+  {
+    path: 'pay/:id/finished',
+    element: <FinishPay/>
   }
 ])
 

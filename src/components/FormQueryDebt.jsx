@@ -25,11 +25,15 @@ const FormQueryDebt = () => {
         e.preventDefault();
         try{
             let data = await getSelectedData('comprobante_detalle', 'numero_referencia_comprobante', form.NIS);
+            console.log(data);
             if (data.length === 0) {
-                setTitle(`El comprobante ${form.NIS} no posee ninguna deuda`)
+                setTitle(`El comprobante ${form.NIS} es invalido`)
+            }else if (data[0].pagado) {
+                setTitle(`El comprobante ${form.NIS} ya fue pagado`)
             }else{
                 window.location = `/pay/${service}/${form.NIS}`;
             }
+
         }catch(err) {
             console.log(err);
         }

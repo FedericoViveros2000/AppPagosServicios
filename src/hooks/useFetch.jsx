@@ -24,9 +24,9 @@ const useFetch = (table = 'servicios', rowTable, idFilter, initialValue = []) =>
             setIsfetching(true);
             let data = await getSelectedData(table, rowTable, idFilter);
             data.forEach(dat => {
-                setData([
-                    ...dat.campos
-                ])
+                 setData([
+                     ...dat.campos
+                 ])
             });
         } catch (err) {
             setError(err);
@@ -50,7 +50,7 @@ const useFetch = (table = 'servicios', rowTable, idFilter, initialValue = []) =>
 
     useEffect(() => {
         if(table === 'servicios') getData();
-        if (table === 'servicioDetalle') getDataFiltered();
+        if (table === 'servicioDetalle' || table === 'clientes') getDataFiltered();
         if (table === 'comprobante_detalle') getDebt();
     }, [table])
 
